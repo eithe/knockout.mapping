@@ -113,12 +113,20 @@ declare module "knockout" {
         export function fromJS(source: boolean, inputOptions?: MappingOptions<boolean>, target?: ko.Observable<boolean>): ko.Observable<boolean>;
 
         /**
-         * Updates target's observable properties with those of the sources.
+         * Creates a view model object with observable properties for each of the properties on the source. 
          * 
          * @param source Plain JavaScript array to be mapped.
-         * @param target View model object previously mapped to be updated.
          */
-        export function fromJS<MappedT = any, SourceT = any>(source: SourceT[], target: ko.ObservableArray<MappedT>): ko.ObservableArray<MappedT>;
+        export function fromJS<SourceT = any>(source: SourceT[]): ko.ObservableArray<MappedObservable<SourceT>>;
+
+        /**
+         * Creates a view model object with observable properties for each of the properties on the source. 
+         * 
+         * @param source Plain JavaScript array to be mapped.
+         * @param inputOptions The mappings options with no properties.
+         */
+        export function fromJS<SourceT = any>(source: SourceT[], inputOptions: {}): ko.ObservableArray<MappedObservable<SourceT>>;
+
         /**
          * Creates a view model object with observable properties for each of the properties on the source. 
          * If 'target' is supplied, instead, target's observable properties are updated.
@@ -127,8 +135,39 @@ declare module "knockout" {
          * @param options The mapping options.
          * @param target View model object previously mapped to be updated.
          */
-        export function fromJS<MappedT = any, SourceT = any>(source: SourceT[], inputOptions?: MappingOptions<SourceT>, target?: ko.ObservableArray<MappedT>): ko.ObservableArray<MappedT>;
+        export function fromJS<MappedT = any, SourceT = any>(source: SourceT[], inputOptions: MappingOptions<SourceT>, target?: ko.ObservableArray<MappedT>): ko.ObservableArray<MappedT>;
+        /**
+         * Updates target's observable properties with those of the sources.
+         * 
+         * @param source Plain JavaScript array to be mapped.
+         * @param target View model object previously mapped to be updated.
+         */
+        export function fromJS<MappedT = any, SourceT = any>(source: SourceT[], target: ko.ObservableArray<MappedT>): ko.ObservableArray<MappedT>;
 
+        /**
+         * Creates a view model object with observable properties for each of the properties on the source. 
+         * 
+         * @param source Plain JavaScript object to be mapped.
+         */
+        export function fromJS<SourceT = any>(source: SourceT): MappedObservable<SourceT>;
+
+        /**
+         * Creates a view model object with observable properties for each of the properties on the source. 
+         * 
+         * @param source Plain JavaScript object to be mapped.
+         * @param inputOptions The mappings options with no properties.
+         */
+        export function fromJS<SourceT = any>(source: SourceT, inputOptions: {}): MappedObservable<SourceT>;
+
+        /**
+         * Creates a view model object with observable properties for each of the properties on the source. 
+         * If 'target' is supplied, instead, target's observable properties are updated.
+         * 
+         * @param source Plain JavaScript object to be mapped.
+         * @param options The mapping options.
+         * @param target View model object previously mapped to be updated.
+         */
+        export function fromJS<MappedT = any, SourceT = any>(source: SourceT, inputOptions: MappingOptions<SourceT>, target?: MappedT): MappedT;
         /**
          * Updates target's observable properties with those of the sources.
          * 
@@ -136,23 +175,7 @@ declare module "knockout" {
          * @param target View model object previously mapped to be updated.
          */
         export function fromJS<MappedT = any, SourceT = any>(source: SourceT, target: MappedT): MappedT;
-        /**
-         * Creates a view model object with observable properties for each of the properties on the source. 
-         * If 'target' is supplied, instead, target's observable properties are updated.
-         * 
-         * @param source Plain JavaScript object to be mapped.
-         * @param options The mapping options.
-         * @param target View model object previously mapped to be updated.
-         */
-        export function fromJS<MappedT = any, SourceT = any>(source: SourceT, inputOptions?: MappingOptions<SourceT>, target?: MappedT): MappedT;
 
-        /**
-         * Updates target's observable properties with those of the sources.
-         * 
-         * @param jsonString JSON of a JavaScript object to be mapped.
-         * @param target View model object previously mapped to be updated.
-         */
-        export function fromJSON<MappedT = any, SourceT = any>(jsonString: string, target: MappedT): MappedT;
         /**
          * Creates a view model object with observable properties for each of the properties on the source. 
          * If 'target' is supplied, instead, target's observable properties are updated.
@@ -162,6 +185,13 @@ declare module "knockout" {
          * @param target View model object previosly mapped to be updated.
          */
         export function fromJSON<MappedT = any, SourceT = any>(jsonString: string, inputOptions?: MappingOptions<SourceT>, target?: MappedT): MappedT;
+        /**
+         * Updates target's observable properties with those of the sources.
+         * 
+         * @param jsonString JSON of a JavaScript object to be mapped.
+         * @param target View model object previously mapped to be updated.
+         */
+        export function fromJSON<MappedT = any, SourceT = any>(jsonString: string, target: MappedT): MappedT;
 
         /**
          * Creates an unmapped object containing only the properties of the mapped object that were part of your original JS object. 
@@ -169,7 +199,7 @@ declare module "knockout" {
          * @param rootObject Object with observables to be converted.
          * @param options The mapping options
          */
-        export function toJS<MappedT = any, SourceT = any>(rootObject: Object, options?: MappingOptions<SourceT>): MappedT;
+        export function toJS<SourceT = any, MappedT = any>(rootObject: MappedT, options?: MappingOptions<SourceT>): SourceT;
 
         /**
          * Creates an unmapped object containing only the properties of the mapped object that were part of your original JS object.

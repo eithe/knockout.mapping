@@ -10,14 +10,12 @@ interface SimpleObject {
     numUsers: number;
 }
 
-interface SimpleVM extends ko.mapping.MappedObservable<SimpleObject> { }
-
 const simpleData: SimpleObject = {
     serverTime: "2010-01-07",
     numUsers: 3
 };
 
-const simpleVM = ko.mapping.fromJS<SimpleVM>(simpleData);
+const simpleVM = ko.mapping.fromJS(simpleData);
 simpleVM.serverTime("2010-01-08");
 simpleVM.numUsers(5);
 
@@ -46,7 +44,7 @@ const advancedData: AdvancedData = {
     ]
 };
 
-const advancedVM = ko.mapping.fromJS<AdvancedVM>(advancedData);
+const advancedVM = ko.mapping.fromJS(advancedData);
 advancedVM.name("test");
 advancedVM.children()[0].id(2);
 
@@ -108,3 +106,24 @@ const advancedMappingOptions: ko.mapping.MappingOptions<AdvancedData> = {
     copy: ["children"],
     observe: ["name"]
 }
+
+/*
+ * Automatic Mapping
+ */
+
+const autoMapped = ko.mapping.fromJS(simpleData);
+autoMapped.numUsers();
+autoMapped.serverTime();
+
+const autoMappedWithOptions = ko.mapping.fromJS(simpleData, {});
+autoMappedWithOptions.numUsers();
+autoMappedWithOptions.serverTime();
+
+const simpleDataArray = [simpleData];
+const autoMappedArray = ko.mapping.fromJS(simpleDataArray);
+autoMappedArray()[0].numUsers();
+autoMappedArray()[0].serverTime();
+
+const autoMappedArrayWithOptions = ko.mapping.fromJS(simpleDataArray, {});
+autoMappedArrayWithOptions()[0].numUsers();
+autoMappedArrayWithOptions()[0].serverTime();
