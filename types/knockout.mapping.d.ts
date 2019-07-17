@@ -4,9 +4,13 @@ declare module "knockout" {
     export module mapping {
         export type MappedObservable<T> = {
             [P in keyof T]:
-            T[P] extends Array<infer U> ? ko.ObservableArray<MappedObservable<U>> :
-            ko.Observable<T[P]>;
-        }
+            T[P] extends ko.Observable<infer E> | ko.ObservableArray<infer E> ? T[P] :
+            T[P] extends string | boolean | number | Date ? ko.Observable<T[P]> :
+            T[P] extends Array<infer E> ? ko.ObservableArray<MappedObservable<E>> :
+            T[P] extends Function ? T[P] :
+            T[P] extends object ? MappedObservable<T[P]> :
+            T[P];
+        };
 
         export type MappingOptions<T = any> = MappingOptionsBase<T> & MappingOptionsSpecific<T>;
 
@@ -29,7 +33,7 @@ declare module "knockout" {
             [P in keyof T]?:
             T[P] extends Array<infer U> ? MappingOptionsProperty<U> :
             MappingOptionsProperty<T[P]>;
-        }
+        };
 
         export interface CreateOptions<T> {
             data: T;
