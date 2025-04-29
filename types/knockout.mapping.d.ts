@@ -194,7 +194,15 @@ declare module "knockout" {
         export function fromJSON<MappedT = any, SourceT = any>(jsonString: string, target: MappedT): MappedT;
 
         /**
-         * Creates an unmapped object containing only the properties of the mapped object that were part of your original JS object. 
+         * Creates an unmapped object containing only the properties of the mapped object that were part of your original JS object.
+         * 
+         * @param rootObject Object with observables to be converted.
+         * @param options The mapping options
+         */
+        export function toJS<T>(rootObject: MappedObservable<T>, options?: MappingOptions<T>): T;
+
+        /**
+         * Creates an unmapped object containing only the properties of the mapped object.
          * 
          * @param rootObject Object with observables to be converted.
          * @param options The mapping options
