@@ -1,7 +1,6 @@
 (function(factory) {
     'use strict';
 
-    /*jshint sub:true,curly:false*/
     /*global ko,require,exports,define,module*/
 
     if (typeof require === "function" && typeof exports === "object" && typeof module === "object") {
@@ -20,7 +19,6 @@
         factory(ko, ko.mapping = {});
     }
 }(function(ko, exports) {
-    /*jshint sub:true,curly:false*/
     'use strict';
 
     ko.mapping = exports;
