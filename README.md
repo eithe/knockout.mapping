@@ -77,7 +77,6 @@ Update all your imports:
 + import mapping from 'ko-mapping';
 ```
 
-
 ### Update types
 
 If you used `KnockoutObservableType` (or [any of the other types](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/knockout.mapping/index.d.ts)) from the old `@types/knockout.mapping` package, you need to update to use `MappedObservable`:
