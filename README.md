@@ -1,10 +1,8 @@
 # knockout.mapping
 
-[![Build Status](https://travis-ci.org/crissdev/knockout.mapping.svg?branch=master)](https://travis-ci.org/crissdev/knockout.mapping)
-[![npm version](https://badge.fury.io/js/knockout-mapping.svg)](http://badge.fury.io/js/knockout-mapping)
+[![npm version](https://badge.fury.io/js/knockout-mapping.svg)](http://badge.fury.io/js/ko-mapping)
 
-
-> Object mapping plugin for [Knockout](http://knockoutjs.com/)
+> Object mapping plugin for [Knockout](http://knockoutjs.com/) with built-in types, forked from https://github.com/crissdev/knockout.mapping
 
 
 ## Documentation
@@ -14,16 +12,10 @@ Official documentation [here](http://knockoutjs.com/documentation/plugins-mappin
 
 ## Install
 
-#### Bower
-
-```sh
-bower install bower-knockout-mapping --save
-```
-
 #### NPM
 
 ```sh
-npm install knockout-mapping --save
+npm install ko-mapping --save
 ```
 
 
