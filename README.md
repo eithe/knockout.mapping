@@ -12,8 +12,6 @@ Official documentation [here](http://knockoutjs.com/documentation/plugins-mappin
 
 ## Install
 
-#### NPM
-
 ```sh
 npm install ko-mapping --save
 ```
